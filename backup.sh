@@ -2,7 +2,7 @@
 post_file () {
 	curl -s -o /dev/null \
 		-H "Content-Type: multipart/form-data" \
-		-F 'payload_json={"username": "Diskord"}' \
+		-F "payload_json={\"username\":\"Diskord\"}" \
 		-F "files[]=@$1" \
 		$DISKORD_WEBHOOK
 }
