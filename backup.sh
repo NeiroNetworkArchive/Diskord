@@ -13,10 +13,11 @@ if [ -z "$1" ]; then echo "Target file is not specified"; exit 1; fi
 file=`realpath -m "$1"`
 if [ ! -e "$file" ]; then echo "File '$file' was not found"; exit 1; fi
 
+cd "`dirname "$file"`"
 archive="`basename "$file"` `date +"%Y-%m-%d_%H-%M-%S"`.7z"
-7zr -v8191k -bso0 -bsp0 a "$archive" "$1"
+7zr -v8191k -bso0 -bsp0 a "$archive" "`basename "$file"`"
 
-find * -type f -name "$archive.*" -print0 | while IFS= read -r -d '' file; do
-	post_file "$file"
-	rm "$file"
+find * -type f -name "$archive.*" -print0 | while IFS= read -r -d '' part; do
+	post_file "$part"
+	rm "$part"
 done
