@@ -7,7 +7,7 @@ post_file () {
 		$DISKORD_WEBHOOK
 }
 
-if ! type 7zr > /dev/null 2>&1; then echo "7z not found, install 'p7zip-full'"; exit 1; fi
+if ! type 7z > /dev/null 2>&1; then echo "7z not found, install 'p7zip-full'"; exit 1; fi
 if [ -z $DISKORD_WEBHOOK ]; then echo "No webhook url has been set, run 'export DISKORD_WEBHOOK=<webhook url>'"; exit 1; fi
 if [ -z "$1" ]; then echo "Target file is not specified"; exit 1; fi
 file=`realpath -m "$1"`
